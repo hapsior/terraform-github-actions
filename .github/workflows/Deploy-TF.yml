@@ -51,8 +51,13 @@ jobs:
 
       - name: Terraform plan
         #if: github.event_name == 'pull_request'
-        run: terraform plan -out=tfplan.out
-
+        run: >
+          terraform plan 
+          -out=tfplan.out
+          -var.application_name="devops"
+          -var.environment_name="dev"
+          -var.primary_location="polandcentral"
+          
       - name: Upload plan (PR)
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
