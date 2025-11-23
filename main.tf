@@ -33,3 +33,8 @@ resource "azurerm_role_assignment" "github_oidc_sp_contributor" {
   role_definition_name = "Contributor"
   scope                = data.azurerm_subscription.current.id
 }
+
+resource "azurerm_resource_group" "rg-test" {
+  name     = "rg-${var.application_name}-${var.environment_name}-test"
+  location = var.primary_location
+}
